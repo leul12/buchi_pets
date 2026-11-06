@@ -163,6 +163,26 @@
     .media.phone img { max-width: 340px; margin: 0 auto; border-radius: 28px; }
     .tag { display: inline-block; font-weight: 700; color: var(--accent-deep); font-size: 15px; margin-bottom: 8px; }
 
+    /* holiday teaser */
+    .holiday { background: linear-gradient(180deg, #1f2547, #3a2c5c); color: #f3ede4; }
+    .holiday .sub { color: #cfc6e6; }
+    .holiday .soon {
+      display: inline-block; padding: 6px 14px; border-radius: 999px; margin-bottom: 16px;
+      background: rgba(255, 209, 102, .16); color: #ffd166; font-weight: 700; font-size: 14px;
+    }
+    .holiday .teaser { margin: 36px auto 0; max-width: 900px; border-radius: 26px; overflow: hidden; box-shadow: 0 16px 40px rgba(0,0,0,.35); }
+    .countdown { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
+    .countdown div {
+      background: rgba(255, 255, 255, .08); border-radius: 18px; padding: 14px 22px; min-width: 170px;
+    }
+    .countdown b { display: block; font-family: "Baloo 2", sans-serif; font-size: 36px; line-height: 1; color: #ffd166; }
+    .countdown span { font-size: 15px; color: #cfc6e6; }
+    .gifts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 36px; text-align: left; }
+    .gifts div { background: rgba(255, 255, 255, .07); border-radius: 20px; padding: 20px; }
+    .gifts .i { font-size: 28px; }
+    .gifts h3 { font-size: 21px; margin: 8px 0 4px; color: #fff; }
+    .gifts p { margin: 0; color: #cfc6e6; font-size: 15px; }
+
     /* final cta */
     .final { text-align: center; padding: 90px 0; }
     .final .species { max-width: 420px; margin: 0 auto 26px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); }
@@ -177,10 +197,14 @@
       .hero .wrap, .feature { grid-template-columns: 1fr; gap: 34px; }
       .feature.flip .media { order: 0; }
       .steps { grid-template-columns: 1fr; }
+      .gifts { grid-template-columns: 1fr 1fr; }
       nav .links a.plain { display: none; }
       .hero { padding-top: 16px; }
       section { padding: 56px 0; }
       .feature + .feature { margin-top: 60px; }
+    }
+    @media (max-width: 520px) {
+      .gifts { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
       .toast { animation: none; }
@@ -195,6 +219,7 @@
       <a class="logo" href="#"><span>🐣</span>Buchi</a>
       <div class="links">
         <a class="plain" href="#how">How it works</a>
+        <a class="plain" href="#holidays">Holidays</a>
         <a class="plain" href="https://github.com/leul12/buchi_pets#readme">Guide</a>
         <a class="btn btn-primary" href="https://t.me/Buchip_bot">Play</a>
       </div>
@@ -333,6 +358,43 @@
     </div>
   </section>
 
+  <section class="holiday" id="holidays">
+    <div class="wrap center">
+      <span class="soon">✨ Coming soon</span>
+      <h2>Christmas &amp; Genna are coming to Buchi</h2>
+      <p class="sub">A first look at the holiday update. Celebrate Christmas on December 25 and Genna, Ethiopian Christmas, on January 7 with your pet.</p>
+      <img class="teaser" src="images/holiday-teaser.png" alt="The cat, duck and dog wearing white netela scarves with tibeb borders, under holiday lights next to a tree and presents" width="1000" height="440" loading="lazy">
+
+      <div class="countdown" aria-live="polite">
+        <div><b id="cd-christmas">–</b><span>days to Christmas · Dec 25</span></div>
+        <div><b id="cd-genna">–</b><span>days to Genna · Jan 7</span></div>
+      </div>
+
+      <div class="gifts">
+        <div>
+          <span class="i">🧣</span>
+          <h3>Holiday netela</h3>
+          <p>A white netela with a colourful tibeb border for every pet, only during the holidays.</p>
+        </div>
+        <div>
+          <span class="i">🏑</span>
+          <h3>"Play genna with me!"</h3>
+          <p>A special holiday wish: play the traditional genna game together with your buddy.</p>
+        </div>
+        <div>
+          <span class="i">🎨</span>
+          <h3>Holiday stickers</h3>
+          <p>New festive stickers appear in every pet's sticker pack for the season.</p>
+        </div>
+        <div>
+          <span class="i">🎁</span>
+          <h3>Surprises</h3>
+          <p>A few more things we're keeping quiet. Hatch a pet now so it's ready to celebrate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="final alt">
     <div class="wrap">
       <img class="species" src="images/species.png" alt="A duck, a cat and a dog" width="600" height="200" loading="lazy">
@@ -352,5 +414,24 @@
     </div>
   </footer>
 
+  <script>
+    // Days until the next Dec 25 and Jan 7, counted in Addis Ababa time (UTC+3).
+    (function () {
+      var now = new Date(Date.now() + 3 * 3600 * 1000);
+      var today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+      function daysTo(month, day) {
+        var y = now.getUTCFullYear();
+        var t = Date.UTC(y, month, day);
+        if (t < today) t = Date.UTC(y + 1, month, day);
+        return Math.round((t - today) / 86400000);
+      }
+      function show(id, n, word) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = n === 0 ? word : String(n);
+      }
+      show("cd-christmas", daysTo(11, 25), "Today! 🎄");
+      show("cd-genna", daysTo(0, 7), "Today! 🎄");
+    })();
+  </script>
 </body>
 </html>

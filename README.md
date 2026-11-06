@@ -6,7 +6,7 @@
 
 <p align="center">
   <b>A little pet you raise together with a friend, right inside Telegram.</b><br>
-  <a href="https://t.me/Buchip_bot"><b>▶ Play now: @Buchip_bot</b></a>
+  <a href="https://t.me/Buchip_bot"><b>▶ Play now: @Buchip_bot</b></a> · <a href="https://buchi-pets.ethiodeploy.app/">Website</a>
 </p>
 
 ---
@@ -147,6 +147,12 @@ The card has **🍙 Feed · 🎾 Play · 🫧 Bath · 💛 Pat · 💤 Sleep · 
 Tap **Make stickers** in the app, or send `/stickers` to the bot. Your pet gets its **own Telegram sticker pack** in 8 moods. It wears its personality's accessory, and the pack is **redrawn when your pet grows up**, for everyone who added it.
 
 <p align="center"><img src="images/stickers.png" alt="Eight mood stickers of a Foodie duck" width="640"></p>
+
+## Coming soon: Christmas & Genna 🎄
+
+A holiday update is on the way for **Christmas (December 25)** and **Genna, Ethiopian Christmas (January 7)**: a white **netela with a tibeb border** for every pet, a special *"Play genna with me!"* wish, festive stickers in every pack, and a few surprises.
+
+<p align="center"><img src="images/holiday-teaser.png" alt="Pets in holiday netela scarves" width="640"></p>
 
 ## Bot commands
 
