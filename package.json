@@ -1,0 +1,12 @@
+{
+  "name": "buchi-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page for Buchi, a pet you raise with a friend on Telegram",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
